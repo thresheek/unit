@@ -33,6 +33,7 @@ config.env.%:
 	cp -Pa $(CURDIR)/NOTICE $(BUILDDIR_$*)/
 	cp -Pa $(CURDIR)/README $(BUILDDIR_$*)/
 	cp -Pa $(CURDIR)/go $(BUILDDIR_$*)/
+	cp -Pa $(CURDIR)/unitd.8 $(BUILDDIR_$*)/
 	touch $@
 
 configure.unit: config.env.unit
@@ -118,6 +119,7 @@ binary-indep: build install
 	dh_testroot
 	dh_installdocs
 	dh_installchangelogs 
+	dh_installman
 	dh_link
 	dh_strip --dbg-package=unit-dbg
 	dh_shlibdeps
