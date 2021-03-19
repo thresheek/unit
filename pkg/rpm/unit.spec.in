@@ -125,7 +125,7 @@ DESTDIR=%{buildroot} make unitd-install libunit-install
 %{__rm} -rf %{buildroot}%{_initrddir}/
 %{__install} -p -D -m 0644 %{SOURCE1} %{buildroot}%{_unitdir}/unit.service
 
-%{__install} -p -D -m 0644 %{bdir}/unitd.8 \
+%{__install} -p -D -m 0644 %{bdir}/build/unitd.8 \
     %{buildroot}%{_mandir}/man8/unitd.8
 
 QA_SKIP_BUILD_ROOT=1
