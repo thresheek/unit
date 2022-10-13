@@ -34,6 +34,7 @@ clean:
 	@cd deb && make clean
 	@cd docker && make clean
 	@cd npm && make clean
+	@cd contrib && make clean
 	rm -f unit-$(VERSION).tar.gz
 	rm -f unit-$(VERSION).tar.gz.sha512
 

@@ -110,7 +110,8 @@ CONFIGURE_ARGS=\
 	--user=unit \
 	--group=unit \
 	--tests \
-	--openssl
+	--openssl \
+	--njs
 
 export CR=\\n
 
@@ -179,7 +180,7 @@ endif
 debuild/unit_$(VERSION).orig.tar.gz: | debuild/$(SRCDIR)/debian
 	cd ../.. && tar -czf pkg/deb/debuild/$(SRCDIR).tar.gz \
 		--transform "s#^#$(SRCDIR)/#" \
-		LICENSE NOTICE CHANGES README.md CONTRIBUTING.md configure auto src test version go docs/man/unitd.8.in
+		LICENSE NOTICE CHANGES README.md CONTRIBUTING.md configure auto src test version go docs/man/unitd.8.in pkg/contrib
 	mv debuild/$(SRCDIR).tar.gz debuild/unit_$(VERSION).orig.tar.gz
 	cd debuild && tar zxf unit_$(VERSION).orig.tar.gz
 
