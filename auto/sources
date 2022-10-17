@@ -34,6 +34,7 @@ NXT_LIB_SRCS=" \
     src/nxt_parse.c \
     src/nxt_sprintf.c \
     src/nxt_var.c \
+    src/nxt_tstr.c \
     src/nxt_file_name.c \
     src/nxt_log.c \
     src/nxt_djb_hash.c \
@@ -133,6 +134,10 @@ NXT_LIB_POLARSSL_SRCS="src/nxt_polarssl.c"
 
 NXT_LIB_PCRE_SRCS="src/nxt_pcre.c"
 NXT_LIB_PCRE2_SRCS="src/nxt_pcre2.c"
+
+if [ "$NXT_NJS" != "NO" ]; then
+    NXT_LIB_SRCS="$NXT_LIB_SRCS src/nxt_js.c src/nxt_http_js.c"
+fi
 
 NXT_LIB_EPOLL_SRCS="src/nxt_epoll_engine.c"
 NXT_LIB_KQUEUE_SRCS="src/nxt_kqueue_engine.c"
