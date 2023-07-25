@@ -51,6 +51,7 @@ include Makefile.perl
 include Makefile.jsc-common
 include Makefile.jsc8
 include Makefile.jsc11
+include Makefile.wasm
 endif
 
 ifeq ($(OSVER), centos8)
@@ -64,6 +65,7 @@ include Makefile.perl
 include Makefile.jsc-common
 include Makefile.jsc8
 include Makefile.jsc11
+include Makefile.wasm
 endif
 
 ifeq ($(OSVER), centos9)
@@ -74,6 +76,7 @@ include Makefile.perl
 include Makefile.jsc-common
 include Makefile.jsc8
 include Makefile.jsc11
+include Makefile.wasm
 endif
 
 ifeq ($(OSVER), amazonlinux2)
@@ -84,6 +87,7 @@ include Makefile.go
 include Makefile.perl
 include Makefile.jsc-common
 include Makefile.jsc8
+include Makefile.wasm
 endif
 
 ifeq ($(OSVER), amazonlinux2023)
@@ -94,6 +98,7 @@ include Makefile.go
 include Makefile.perl
 include Makefile.jsc-common
 include Makefile.jsc17
+include Makefile.wasm
 endif
 
 ifeq ($(OSVER), fedora)
@@ -105,6 +110,7 @@ include Makefile.ruby
 include Makefile.jsc-common
 include Makefile.jsc8
 include Makefile.jsc11
+include Makefile.wasm
 endif
 
 ifeq ($(OSVER), fedora37)
@@ -116,6 +122,7 @@ include Makefile.ruby
 include Makefile.jsc-common
 include Makefile.jsc8
 include Makefile.jsc11
+include Makefile.wasm
 endif
 
 CONFIGURE_ARGS_COMMON=\

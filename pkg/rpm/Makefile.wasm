@@ -1,0 +1,55 @@
+MODULES+=		wasm
+MODULE_SUFFIX_wasm=	wasm
+
+MODULE_SUMMARY_wasm=	WASM module for NGINX Unit
+
+MODULE_VERSION_wasm=	$(VERSION)
+MODULE_RELEASE_wasm=	1
+
+MODULE_CONFARGS_wasm=	wasm --include-path=$(pwd)/contrib/wasmtime/crates/c-api/include --lib-path=$(pwd)/contrib/wasmtime/target/release
+MODULE_MAKEARGS_wasm=	wasm
+MODULE_INSTARGS_wasm=	wasm-install
+
+MODULE_SOURCES_wasm=	unit.example-wasm-app \
+			unit.example-wasm-config
+
+BUILD_DEPENDS_wasm=
+
+BUILD_DEPENDS+=		$(BUILD_DEPENDS_wasm)
+
+define MODULE_PREINSTALL_wasm
+%{__install} -m 644 -p contrib/wasmtime/target/release/libwasmtime.so %{buildroot}%{_libdir}/
+%{__mkdir} -p %{buildroot}%{_datadir}/doc/unit-wasm/examples/wasminfo-app
+%{__install} -m 644 -p %{SOURCE100} \
+    %{buildroot}%{_datadir}/doc/unit-wasm/examples/wasminfo-app/index.wasm
+%{__install} -m 644 -p %{SOURCE101} \
+    %{buildroot}%{_datadir}/doc/unit-wasm/examples/unit.config
+endef
+export MODULE_PREINSTALL_wasm
+
+define MODULE_FILES_wasm
+%{_libdir}/libwasmtime.so
+%{_libdir}/unit/modules/*
+%{_libdir}/unit/debug-modules/*
+endef
+export MODULE_FILES_wasm
+
+define MODULE_POST_wasm
+cat <<BANNER
+----------------------------------------------------------------------
+
+The $(MODULE_SUMMARY_wasm) has been installed.
+
+To check out the sample app, run these commands:
+
+ sudo service unit start
+ cd /usr/share/doc/%{name}/examples
+ sudo curl -X PUT --data-binary @unit.config --unix-socket /var/run/unit/control.sock http://localhost/config
+ curl http://localhost:8300/
+
+Online documentation is available at https://unit.nginx.org
+
+----------------------------------------------------------------------
+BANNER
+endef
+export MODULE_POST_wasm
