@@ -10,8 +10,7 @@ MODULE_CONFARGS_wasm=	wasm --include-path=\`pwd\`/pkg/contrib/wasmtime/crates/c-
 MODULE_MAKEARGS_wasm=	wasm
 MODULE_INSTARGS_wasm=	wasm-install
 
-MODULE_SOURCES_wasm=	unit.example-wasm-app \
-			unit.example-wasm-config
+MODULE_SOURCES_wasm=
 
 BUILD_DEPENDS_wasm=
 
@@ -23,11 +22,6 @@ endef
 export MODULE_PREBUILD_wasm
 
 define MODULE_PREINSTALL_wasm
-%{__mkdir} -p %{buildroot}%{_datadir}/doc/unit-wasm/examples/wasminfo-app
-%{__install} -m 644 -p %{SOURCE100} \
-    %{buildroot}%{_datadir}/doc/unit-wasm/examples/wasminfo-app/index.wasm
-%{__install} -m 644 -p %{SOURCE101} \
-    %{buildroot}%{_datadir}/doc/unit-wasm/examples/unit.config
 endef
 export MODULE_PREINSTALL_wasm
 
@@ -48,13 +42,6 @@ cat <<BANNER
 ----------------------------------------------------------------------
 
 The $(MODULE_SUMMARY_wasm) has been installed.
-
-To check out the sample app, run these commands:
-
- sudo service unit start
- cd /usr/share/doc/%{name}/examples
- sudo curl -X PUT --data-binary @unit.config --unix-socket /var/run/unit/control.sock http://localhost/config
- curl http://localhost:8300/
 
 Online documentation is available at https://unit.nginx.org
 
