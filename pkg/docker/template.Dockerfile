@@ -11,9 +11,11 @@ LABEL org.opencontainers.image.version="@@VERSION@@"
 RUN set -ex \
     && savedAptMark="$(apt-mark showmanual)" \
     && apt-get update \
-    && apt-get install --no-install-recommends --no-install-suggests -y ca-certificates mercurial build-essential libssl-dev libpcre2-dev curl pkg-config \
+    && apt-get install --no-install-recommends --no-install-suggests -y ca-certificates build-essential libssl-dev libpcre2-dev curl pkg-config git \
     && mkdir -p /usr/lib/unit/modules /usr/lib/unit/debug-modules \
-    && hg clone -u @@VERSION@@-@@PATCHLEVEL@@ https://hg.nginx.org/unit \
+    && mkdir /usr/src/unit \
+    && cd /usr/src/unit \
+    && git clone -b wasm-contrib-2 https://github.com/thresheek/unit \
     && cd unit \
     && NCPU="$(getconf _NPROCESSORS_ONLN)" \
     && DEB_HOST_MULTIARCH="$(dpkg-architecture -q DEB_HOST_MULTIARCH)" \
@@ -50,7 +52,7 @@ RUN set -ex \
     && ./configure @@CONFIGURE@@ \
     && make -j $NCPU @@INSTALL@@ \
     && cd \
-    && rm -rf unit \
+    && rm -rf /usr/src/unit \
     && for f in /usr/sbin/unitd /usr/lib/unit/modules/*.unit.so; do \
         ldd $f | awk '/=>/{print $(NF-1)}' | while read n; do dpkg-query -S $n; done | sed 's/^\([^:]\+\):.*$/\1/' | sort | uniq >> /requirements.apt; \
        done \
