@@ -17,6 +17,7 @@ BASEDIR = $(CURDIR)
 
 config.env.%:
 	dh_testdir
+%%MODULE_PREBUILD%%
 	mkdir -p $(BUILDDIR_$*)
 	cp -Pa $(CURDIR)/auto $(BUILDDIR_$*)/
 	cp -Pa $(CURDIR)/configure $(BUILDDIR_$*)/
@@ -52,7 +53,6 @@ configure.unit_debug: config.env.unit_debug
 
 build-arch.%: configure.%
 	dh_testdir
-%%MODULE_PREBUILD%%
 	$(MAKE) -C $(BUILDDIR_$*) %%MODULE_MAKEARGS%%
 	touch $@
 

@@ -19,7 +19,7 @@ MODULE_DEPENDS_wasm=
 BUILD_DEPENDS+=		$(BUILD_DEPENDS_wasm)
 
 define MODULE_PREBUILD_wasm
-\$$(MAKE) -C pkg/contrib .wasmtime
+	\$$(MAKE) -C pkg/contrib .wasmtime
 endef
 export MODULE_PREBUILD_wasm
 
@@ -28,8 +28,8 @@ endef
 export MODULE_PREINSTALL_wasm
 
 define MODULE_POSTINSTALL_wasm
-mkdir -p debian/unit-wasm/usr/lib/$(dpkg-architecture -q DEB_HOST_MULTIARCH)/
-install -m 755 -p pkg/contrib/wasmtime/target/release/libwasmtime.so debian/unit-wasm/usr/lib/$(dpkg-architecture -q DEB_HOST_MULTIARCH)/
+	mkdir -p debian/unit-wasm/usr/lib/\$$(dpkg-architecture -q DEB_HOST_MULTIARCH)/
+	install -m 755 -p pkg/contrib/wasmtime/target/release/libwasmtime.so debian/unit-wasm/usr/lib/\$$(dpkg-architecture -q DEB_HOST_MULTIARCH)/
 endef
 export MODULE_POSTINSTALL_wasm
 
