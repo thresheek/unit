@@ -19,5 +19,5 @@ libunit-wasm: libunit-wasm-$(LIBUNIT_WASM_GITHASH).tar.xz
 	$(MOVE)
 
 .libunit-wasm: libunit-wasm
-	cd $< && make WASI_SYSROOT=$(TOPSRC)wasi-sysroot V=1 libunit-wasm
+	cd $< && CFLAGS= make WASI_SYSROOT=$(TOPSRC)wasi-sysroot V=1 libunit-wasm
 	touch $@
