@@ -1,6 +1,6 @@
-FROM node:18-bullseye
+FROM perl:5.38-bullseye
 
-LABEL org.opencontainers.image.title="Unit (node18)"
+LABEL org.opencontainers.image.title="Unit (perl5.38)"
 LABEL org.opencontainers.image.description="Official build of Unit for Docker."
 LABEL org.opencontainers.image.url="https://unit.nginx.org"
 LABEL org.opencontainers.image.source="https://github.com/nginx/unit"
@@ -45,14 +45,14 @@ RUN set -ex \
     && make -j $NCPU unitd \
     && install -pm755 build/sbin/unitd /usr/sbin/unitd \
     && make clean \
-    && npm -g install node-gyp \
+    && /bin/true \
     && ./configure $CONFIGURE_ARGS_MODULES --cc-opt="$CC_OPT" --modulesdir=/usr/lib/unit/debug-modules --debug \
-    && ./configure nodejs --node-gyp=/usr/local/bin/node-gyp \
-    && make -j $NCPU node node-install libunit-install \
+    && ./configure perl \
+    && make -j $NCPU perl-install \
     && make clean \
     && ./configure $CONFIGURE_ARGS_MODULES --cc-opt="$CC_OPT" --modulesdir=/usr/lib/unit/modules \
-    && ./configure nodejs --node-gyp=/usr/local/bin/node-gyp \
-    && make -j $NCPU node node-install libunit-install \
+    && ./configure perl \
+    && make -j $NCPU perl-install \
     && cd \
     && rm -rf /usr/src/unit \
     && for f in /usr/sbin/unitd /usr/lib/unit/modules/*.unit.so; do \
@@ -60,7 +60,7 @@ RUN set -ex \
        done \
     && apt-mark showmanual | xargs apt-mark auto > /dev/null \
     && { [ -z "$savedAptMark" ] || apt-mark manual $savedAptMark; } \
-    && rm -rf /root/.cache/ @@RUN@@@@RUN@@ rm -rf /root/.npm \
+    && /bin/true \
     && mkdir -p /var/lib/unit/ \
     && mkdir -p /docker-entrypoint.d/ \
     && groupadd --gid 999 unit \
