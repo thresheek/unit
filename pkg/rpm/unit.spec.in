@@ -238,5 +238,6 @@ BANNER
 %{_includedir}/unit/*.h
 %endif
 %{_includedir}/nxt_*.h
+%{_datadir}/pkgconfig/unit.pc
 
 %changelog
