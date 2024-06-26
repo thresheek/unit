@@ -1,0 +1,10 @@
+name: packaging
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  packaging:
+    uses: nginx/ci-self-hosted/.github/workflows/unit-packaging.yml@unit

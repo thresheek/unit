@@ -1,0 +1,10 @@
+name: buildbot
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  buildbot:
+    uses: nginx/ci-self-hosted/.github/workflows/unit-buildbot.yml@unit
