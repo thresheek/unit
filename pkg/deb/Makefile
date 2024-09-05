@@ -75,7 +75,6 @@ include Makefile.perl
 include Makefile.ruby
 include Makefile.jsc-common
 include Makefile.jsc11
-include Makefile.wasm
 endif
 
 # Debian 12
@@ -100,7 +99,6 @@ include Makefile.perl
 include Makefile.ruby
 include Makefile.jsc-common
 include Makefile.jsc11
-include Makefile.wasm
 endif
 
 CONFIGURE_ARGS_COMMON=\
