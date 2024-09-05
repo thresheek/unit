@@ -67,6 +67,7 @@ include Makefile.go
 include Makefile.perl
 include Makefile.jsc-common
 include Makefile.jsc8
+include Makefile.wasm
 endif
 
 ifeq ($(OSVER), amazonlinux2023)
