@@ -40,8 +40,6 @@ export MODULE_POSTINSTALL_jsc21
 define MODULE_FILES_jsc21
 %{_libdir}/unit/modules/*
 %{_libdir}/unit/debug-modules/*
-%dir %{_datadir}/doc/unit-jsc21
-%{_datadir}/doc/unit-jsc21/*
 %{_datadir}/unit-jsc-common/*
 endef
 export MODULE_FILES_jsc21

@@ -43,8 +43,6 @@ export MODULE_POSTINSTALL_jsc8
 define MODULE_FILES_jsc8
 %{_libdir}/unit/modules/*
 %{_libdir}/unit/debug-modules/*
-%dir %{_datadir}/doc/unit-jsc8
-%{_datadir}/doc/unit-jsc8/*
 %{_datadir}/unit-jsc-common/*
 endef
 export MODULE_FILES_jsc8

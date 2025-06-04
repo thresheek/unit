@@ -41,8 +41,6 @@ export MODULE_POSTINSTALL_jsc11
 define MODULE_FILES_jsc11
 %{_libdir}/unit/modules/*
 %{_libdir}/unit/debug-modules/*
-%dir %{_datadir}/doc/unit-jsc11
-%{_datadir}/doc/unit-jsc11/*
 %{_datadir}/unit-jsc-common/*
 endef
 export MODULE_FILES_jsc11

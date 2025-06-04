@@ -54,8 +54,6 @@ export MODULE_POSTINSTALL_jsc17
 define MODULE_FILES_jsc17
 %{_libdir}/unit/modules/*
 %{_libdir}/unit/debug-modules/*
-%dir %{_datadir}/doc/unit-jsc17
-%{_datadir}/doc/unit-jsc17/*
 %{_datadir}/unit-jsc-common/*
 endef
 export MODULE_FILES_jsc17
