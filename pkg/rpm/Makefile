@@ -14,6 +14,8 @@ ifeq ($(shell rpm --eval "%{?rhel}"), 8)
 OSVER = centos8
 else ifeq ($(shell rpm --eval "%{?rhel}"), 9)
 OSVER = centos9
+else ifeq ($(shell rpm --eval "%{?rhel}"), 10)
+OSVER = rhel10
 else ifeq ($(shell rpm --eval "%{?amzn}"), 2)
 OSVER = amazonlinux2
 else ifeq ($(shell rpm --eval "%{?amzn}"), 2023)
@@ -56,6 +58,16 @@ include Makefile.perl
 include Makefile.jsc-common
 include Makefile.jsc8
 include Makefile.jsc11
+include Makefile.wasm
+endif
+
+ifeq ($(OSVER), rhel10)
+include Makefile.php
+include Makefile.python312
+include Makefile.go
+include Makefile.perl
+include Makefile.jsc-common
+include Makefile.jsc21
 include Makefile.wasm
 endif
 
