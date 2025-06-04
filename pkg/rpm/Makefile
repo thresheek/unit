@@ -18,8 +18,6 @@ else ifeq ($(shell rpm --eval "%{?amzn}"), 2)
 OSVER = amazonlinux2
 else ifeq ($(shell rpm --eval "%{?amzn}"), 2023)
 OSVER = amazonlinux2023
-else ifeq ($(shell test `rpm --eval '0%{?fedora} -eq 40'`; echo $$?),0)
-OSVER = fedora40
 else ifeq ($(shell test `rpm --eval '0%{?fedora} -eq 41'`; echo $$?),0)
 OSVER = fedora41
 endif
@@ -78,17 +76,6 @@ include Makefile.python39
 include Makefile.python311
 include Makefile.go
 include Makefile.perl
-include Makefile.jsc-common
-include Makefile.jsc17
-include Makefile.wasm
-endif
-
-ifeq ($(OSVER), fedora40)
-include Makefile.php
-include Makefile.python312
-include Makefile.go
-include Makefile.perl
-include Makefile.ruby
 include Makefile.jsc-common
 include Makefile.jsc17
 include Makefile.wasm
